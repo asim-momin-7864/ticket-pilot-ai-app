@@ -10,6 +10,15 @@ export const TICKET_STATUSES = [
   "FAILED",
 ] as const;
 
+export const SERVICES = [
+  "workspaces",
+  "tasks",
+  "file_storage",
+  "integrations",
+  "api",
+  "auth",
+] as const;
+
 export const INTENTS = [
   "HOW_TO",
   "ERROR",
