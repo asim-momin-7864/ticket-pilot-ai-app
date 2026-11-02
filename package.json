@@ -7,11 +7,17 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "ingest": "tsx --env-file=.env.local scripts/ingest-kb.ts"
+    "ingest": "tsx --env-file=.env.local scripts/ingest-kb.ts",
+    "try:agent": "tsx --env-file=.env.local scripts/try-agent.ts",
+    "spike:pause": "tsx --env-file=.env.local scripts/spike-checkpoint.ts pause",
+    "spike:resume": "tsx --env-file=.env.local scripts/spike-checkpoint.ts resume",
+    "graph": "tsx --env-file=.env.local scripts/run-graph.ts"
   },
   "dependencies": {
     "@ai-sdk/google": "^4.0.109",
     "@base-ui/react": "^1.9.0",
+    "@langchain/core": "^1.3.2",
+    "@langchain/langgraph": "^1.6.0",
     "@remixicon/react": "^4.9.0",
     "@supabase/ssr": "^0.12.7",
     "@supabase/supabase-js": "^2.118.0",
