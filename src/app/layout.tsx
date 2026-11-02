@@ -1,19 +1,14 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Raleway } from "next/font/google";
+import { Geist_Mono, Inter } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import { Suspense } from "react";
 
 import { ThemeProvider } from "@/components/theme-provider";
 import { SiteHeader } from "@/components/site-header";
+import { ThemeToggle } from "@/components/theme-toggle";
 
-const raleway = Raleway({ subsets: ["latin"], variable: "--font-sans" });
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
+const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
@@ -30,12 +25,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html
-      lang="en"
-      suppressHydrationWarning /* keep the className shadcn wrote */
-    >
+    <html lang="en" suppressHydrationWarning>
       <body
-        /* keep your classes and add: */ className="flex min-h-svh flex-col"
+        className={cn(
+          "flex min-h-screen flex-col font-sans bg-background text-foreground",
+          inter.variable,
+          geistMono.variable,
+        )}
       >
         <ThemeProvider
           attribute="class"
@@ -43,10 +39,15 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <Suspense fallback={<header className="h-14 border-b" />}>
-            <SiteHeader />
-          </Suspense>
-          <main className="flex-1">{children}</main>
+          <div className="flex min-h-screen flex-col">
+            <Suspense fallback={null}>
+              <SiteHeader themeToggle={<ThemeToggle />} />
+            </Suspense>
+            <main className="flex-1">{children}</main>
+            <footer className="border-t bg-card py-6 text-center text-sm text-muted-foreground">
+              TicketPilot AI · demo project with dummy data
+            </footer>
+          </div>
         </ThemeProvider>
       </body>
     </html>

@@ -1,48 +1,59 @@
-import Link from "next/link";
-import { createClient } from "@/lib/supabase/server";
-import { signOutAction } from "@/actions/auth";
-import { ThemeToggle } from "@/components/theme-toggle";
-import { Button, buttonVariants } from "@/components/ui/button";
-import { connection } from "next/server";
+"use client";
 
-export async function SiteHeader() {
-  await connection();
-  const supabase = await createClient();
-  const { data } = await supabase.auth.getClaims();
-  const isStaff = Boolean(data?.claims);
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import type { ReactNode } from "react";
+import { signOutAction } from "@/actions/auth";
+import { Button, buttonVariants } from "@/components/ui/button";
+
+export function SiteHeader({ themeToggle }: { themeToggle?: ReactNode }) {
+  const isAdmin = usePathname().startsWith("/admin");
 
   return (
-    <header className="sticky top-0 z-40 w-full border-b bg-background/80 backdrop-blur">
-      <div className="mx-auto flex h-14 w-full max-w-6xl items-center justify-between gap-2 px-4 sm:h-16 sm:px-6">
-        <Link href="/" className="text-base font-bold tracking-tight">
-          TicketPilot
-        </Link>
+    <header className="border-b bg-card">
+      <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-4 p-4 sm:px-6 text-sm">
+        <div className="flex flex-wrap items-center gap-4 sm:gap-6">
+          <Link href={isAdmin ? "/admin/inbox" : "/"} className="font-semibold text-primary hover:text-primary/90 transition-colors">
+            TicketPilot AI
+          </Link>
 
-        <nav className="flex items-center gap-1 sm:gap-2">
-          {isStaff ? (
-            <>
-              <Link
-                href="/admin"
-                className={buttonVariants({ variant: "ghost", size: "sm" })}
-              >
-                Inbox
-              </Link>
-              <form action={signOutAction}>
-                <Button type="submit" variant="outline" size="sm">
-                  Sign out
-                </Button>
-              </form>
-            </>
+          <nav className="flex flex-wrap items-center gap-4 text-muted-foreground">
+            {isAdmin ? (
+              <>
+                <Link href="/admin/inbox" className="hover:text-foreground transition-colors">
+                  Inbox
+                </Link>
+                <Link href="/admin" className="hover:text-foreground transition-colors">
+                  Overview
+                </Link>
+              </>
+            ) : (
+              <>
+                <Link href="/support/new" className="hover:text-foreground transition-colors">
+                  Raise Ticket
+                </Link>
+                <Link href="/support/my-tickets" className="hover:text-foreground transition-colors">
+                  My Tickets
+                </Link>
+              </>
+            )}
+          </nav>
+        </div>
+
+        <div className="flex items-center gap-2">
+          {isAdmin ? (
+            <form action={signOutAction}>
+              <Button type="submit" variant="outline" size="sm">
+                Sign out
+              </Button>
+            </form>
           ) : (
-            <Link
-              href="/login"
-              className={buttonVariants({ variant: "ghost", size: "sm" })}
-            >
+            <Link href="/login" className={buttonVariants({ variant: "outline", size: "sm" })}>
               Staff login
             </Link>
           )}
-          <ThemeToggle />
-        </nav>
+          {themeToggle}
+        </div>
       </div>
     </header>
   );
