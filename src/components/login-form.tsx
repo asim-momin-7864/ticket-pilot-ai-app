@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Alert, AlertDescription } from "@/components/ui/alert";
 
 const initialState: AuthState = {};
 
@@ -37,7 +38,6 @@ export function LoginForm() {
               type="email"
               autoComplete="email"
               required
-              className="h-11"
             />
           </div>
           <div className="grid gap-2">
@@ -48,15 +48,16 @@ export function LoginForm() {
               type="password"
               autoComplete="current-password"
               required
-              className="h-11"
             />
           </div>
 
           {state.message && (
-            <p className="text-sm text-destructive">{state.message}</p>
+            <Alert variant="destructive">
+              <AlertDescription>{state.message}</AlertDescription>
+            </Alert>
           )}
 
-          <Button type="submit" disabled={isPending} className="h-11 w-full">
+          <Button type="submit" disabled={isPending} className="w-full">
             {isPending ? "Signing in..." : "Sign in"}
           </Button>
         </form>
