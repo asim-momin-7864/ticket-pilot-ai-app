@@ -24,7 +24,7 @@ export async function loginAction(
   // one generic message: do not tell attackers which part was wrong
   if (error) return { message: "Wrong email or password." };
 
-  redirect("/admin");
+  redirect("/admin/inbox");
 }
 
 export async function signOutAction() {
