@@ -5,7 +5,7 @@ import { requireStaff } from "@/lib/require-staff";
 async function AdminShell({ children }: { children: React.ReactNode }) {
   await connection();
   await requireStaff();
-  return <div className="...">{children}</div>;
+  return <div className="mx-auto max-w-6xl p-4 sm:p-6">{children}</div>;
 }
 
 export default function AdminLayout({
