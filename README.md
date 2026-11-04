@@ -77,7 +77,7 @@ _(add screenshot here)_
 
 **Staff side (login needed)**
 
-- Inbox with tabs: Needs review, Escalated, Processing, Replied, Failed
+- Inbox with tabs: Needs review, Escalated, Replied, Failed (and Processing section)
 - Ticket page with the conversation, the AI draft, the sources it used, and a simple event log
 - Approve, Edit and approve, or Escalate a draft
 - Re-run button for tickets where the AI run failed
@@ -89,6 +89,17 @@ _(add screenshot here)_
 - Rules written in code (not in a prompt) decide which tickets must go to a person
 - Staff pages are protected in three places: the page, the server action, and the database
 - Spam protection: a hidden form field and a limit of 5 tickets per hour for each email
+
+---
+
+## Ticket flow
+
+![Ticket flow](docs/screenshots/ticket-flow.png)
+
+1. A customer raises a ticket. It starts as **Processing** while the AI works (1 to 2 minutes).
+2. If a safe answer exists, the ticket goes to **Needs review** with a draft. Staff approve, edit or escalate it.
+3. If the ticket is risky or no help article matches, it is **Escalated** to the customer care team.
+4. If the AI step crashes, the ticket is **Failed**. Staff press Re-run to send it back to Processing.
 
 ---
 
