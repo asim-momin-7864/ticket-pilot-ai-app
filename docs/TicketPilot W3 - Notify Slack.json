@@ -1,0 +1,111 @@
+{
+  "name": "TicketPilot W3 - Notify Slack",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "notify-slack",
+        "authentication": "headerAuth",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "40b47ac1-9aa1-4bca-8303-c40925aac15a",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        0,
+        0
+      ],
+      "webhookId": "22222222-2222-4222-8222-222222222222",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "DvaJt1LsdTTdI1gH",
+          "name": "Header Auth account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "select": "channel",
+        "channelId": {
+          "__rl": true,
+          "value": "cc-escalations",
+          "mode": "name"
+        },
+        "text": "=*{{ $json.body.ref }}* | {{ $json.body.priority }} | {{ $json.body.department }}\nReason: {{ $json.body.reason }}\n{{ $json.body.summary }}\n{{ $json.body.link }}",
+        "otherOptions": {}
+      },
+      "id": "e7cfb456-f5b9-4423-b3dc-8a002f4dc87c",
+      "name": "Post to Slack",
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 2.3,
+      "position": [
+        272,
+        0
+      ],
+      "webhookId": "36543b35-06b2-470b-9222-89f0f485f5cf",
+      "credentials": {
+        "slackApi": {
+          "id": "MM3fW9eDyrx6Y8QY",
+          "name": "Slack account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "{ \"ok\": true }",
+        "options": {
+          "responseCode": 200
+        }
+      },
+      "id": "04e4ace0-8a40-421d-9959-f52d320e1535",
+      "name": "Respond OK",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        528,
+        0
+      ]
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Post to Slack",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Post to Slack": {
+      "main": [
+        [
+          {
+            "node": "Respond OK",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "6a13b946-fa9b-4a97-a58e-acc241e91984",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "df3ecd79d18cd72862c187c2e3bcdc52f41711f92cdbf95e3d18dd20515dc802"
+  },
+  "nodeGroups": [],
+  "id": "gDuVKNlhSf4elVOI",
+  "tags": []
+}
