@@ -33,6 +33,17 @@ function getStatusBadgeVariant(
   }
 }
 
+function reasonText(reason: string) {
+  if (reason.startsWith("risky_intent")) return "Sensitive topic: refund, cancellation, legal, security or account data.";
+  if (reason === "account_specific") return "The customer asks about their own account, invoice or payment.";
+  if (reason === "asked_for_human") return "The customer asked to talk to a person.";
+  if (reason === "low_confidence") return "The AI was not sure what this ticket is about.";
+  if (reason === "no_kb_coverage") return "No help article covers this question.";
+  if (reason === "draft_failed") return "The AI could not write a safe draft.";
+  if (reason === "reviewer_escalated") return "A staff member escalated this ticket.";
+  return reason;
+}
+
 export default async function TicketPage({
   params,
 }: {
@@ -197,7 +208,7 @@ export default async function TicketPage({
                 <Alert className="border-warning/40 bg-warning/10 text-foreground">
                   <AlertDescription className="text-sm">
                     <strong className="text-warning font-medium">Escalated:</strong>{" "}
-                    {ticket.escalation_reason}
+                    {reasonText(ticket.escalation_reason)}
                   </AlertDescription>
                 </Alert>
               )}
@@ -217,16 +228,35 @@ export default async function TicketPage({
 
               {ticket.status === "PENDING_REVIEW" && latestDraft ? (
                 <ReviewForm ticketId={ticket.id} draft={latestDraft.body} />
+              ) : ticket.status === "PROCESSING" ? (
+                <p className="text-sm text-muted-foreground">
+                  The AI is reading this ticket and preparing an answer (takes 1 to 2
+                  minutes). This page does not auto-refresh — please refresh your
+                  browser after 1 to 2 minutes to check for updates.
+                </p>
+              ) : ticket.status === "ESCALATED" ? (
+                <p className="text-sm text-muted-foreground">
+                  This is a critical or complex request, or the AI could not answer it safely,
+                  so the AI will not reply. It has been handed to the customer care team, who
+                  will handle it directly. The customer already received a short holding
+                  message.
+                </p>
               ) : ticket.status === "FAILED" ? (
-                <div className="space-y-3">
+                <div className="space-y-2">
                   <p className="text-sm text-muted-foreground">
-                    The AI run failed. See the agent trace for the error.
+                    The AI could not finish processing this ticket the first time. The agent
+                    trace shows the error. Press Re-run to put the ticket back into
+                    Processing and try again.
                   </p>
                   <RerunButton ticketId={ticket.id} />
                 </div>
+              ) : ticket.status === "REPLIED" || ticket.status === "RESOLVED" ? (
+                <p className="text-sm text-muted-foreground">
+                  This ticket has been answered and the reply was sent to the customer.
+                </p>
               ) : (
                 <p className="text-sm text-muted-foreground">
-                  No review needed for this ticket.
+                  No AI draft is available for this ticket.
                 </p>
               )}
             </CardContent>
