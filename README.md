@@ -318,23 +318,11 @@ Open [http://localhost:3000](http://localhost:3000).
 
 ### Demo login for visitors
 
-<!-- Fill this in when the demo accounts are ready. Delete this whole section if you do not give visitors a login. -->
-
-| Role  | Email | Password |
-| ----- | ----- | -------- |
-| Staff | TODO  | TODO     |
+| Role  | Email                  | Password  |
+| ----- | ---------------------- | --------- |
+| Staff | demo-staff@example.com | demo12345 |
 
 This is a demo account with dummy data. In demo mode, no real email is sent.
-
-### Try the agent without the website
-
-<!-- Delete this part if scripts/try-agent.ts was removed in the clean-up. -->
-
-```bash
-npx tsx scripts/try-agent.ts
-```
-
-This runs the agent from the terminal. Open the file to see how to pass your own text.
 
 ---
 
@@ -380,18 +368,6 @@ I want to be honest about what this project does not do:
 
 ---
 
-## Future ideas
-
-- Receive tickets from email
-- Customer follow-up messages on a ticket
-- A team page to add more staff
-- A chart of tickets per day
-- Add automated tests
-
----
-
 ## Author
 
 Built by **Asim Momin** as a portfolio project.
-
-<!-- Add your links here: Portfolio | LinkedIn | Email -->
