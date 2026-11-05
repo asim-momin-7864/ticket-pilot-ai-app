@@ -61,6 +61,12 @@ export function LoginForm() {
             {isPending ? "Signing in..." : "Sign in"}
           </Button>
         </form>
+
+        <div className="mt-6 border-t pt-4 text-xs text-muted-foreground space-y-1">
+          <p className="font-medium text-foreground">Demo credentials:</p>
+          <p>Email: <span className="font-mono text-foreground">demo-staff@example.com</span></p>
+          <p>Password: <span className="font-mono text-foreground">demo12345</span></p>
+        </div>
       </CardContent>
     </Card>
   );
