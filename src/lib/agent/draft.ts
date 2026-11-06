@@ -2,7 +2,7 @@ import { z } from "zod";
 import { generateStructured } from "./llm";
 import type { Doc } from "./retrieve";
 
-export const draftSchema = z.object({
+const draftSchema = z.object({
   sufficient: z.boolean(),
   body: z.string().max(3000),
   citations: z.array(z.string()).max(6),
@@ -53,7 +53,7 @@ export async function draftAnswer(args: {
   return { ...out, body: formatBody(out.body) };
 }
 
-export function formatBody(body: string): string {
+function formatBody(body: string): string {
   return body
     .replace(/\s+(\d+\.\s)/g, "\n$1")
     .replace(/\s*(Sources:)/g, "\n\n$1")

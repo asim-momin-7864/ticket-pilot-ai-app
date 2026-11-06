@@ -5,7 +5,7 @@ import { dispatchOutbox } from "@/lib/integrations/n8n";
 
 type Db = typeof supabaseAdmin;
 
-export async function setStatus(
+async function setStatus(
   db: Db,
   ticketId: string,
   status: string,
