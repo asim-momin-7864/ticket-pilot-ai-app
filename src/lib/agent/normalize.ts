@@ -1,6 +1,6 @@
 const MAX_LEN = 4000;
 
-export function stripQuotedAndSignature(raw: string): string {
+function stripQuotedAndSignature(raw: string): string {
   const lines = raw.replace(/\r\n/g, "\n").split("\n");
   const out: string[] = [];
   for (const line of lines) {
@@ -13,7 +13,7 @@ export function stripQuotedAndSignature(raw: string): string {
   return out.join("\n").trim();
 }
 
-export function redactPII(text: string): string {
+function redactPII(text: string): string {
   return text
     .replace(/[\w.+-]+@[\w-]+\.[\w.-]+/g, "[email]")
     .replace(/\b(?:\d[ -]?){13,16}\b/g, "[card]");

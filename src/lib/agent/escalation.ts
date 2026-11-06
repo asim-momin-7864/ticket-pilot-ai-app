@@ -1,7 +1,7 @@
 import type { Classification } from "./schemas";
 import type { OutboxItem } from "./state";
 
-export const HOLDING_MESSAGE =
+const HOLDING_MESSAGE =
   "Thanks for contacting Orbitly. Our customer-care team will contact you about this request. " +
   "We have passed your message to them.\n\nOrbitly Support";
 
