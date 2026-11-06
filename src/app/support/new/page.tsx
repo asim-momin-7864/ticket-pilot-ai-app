@@ -1,6 +1,8 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { TicketForm } from "@/components/ticket-form";
 
+export const maxDuration = 300;
+
 export default function NewTicketPage() {
   return (
     <main className="mx-auto max-w-4xl p-4 sm:p-6">
