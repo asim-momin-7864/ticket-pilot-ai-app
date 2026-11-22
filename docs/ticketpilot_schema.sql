@@ -1,15 +1,5 @@
--- =====================================================================
+
 -- TicketPilot AI - FINAL REFERENCE SCHEMA (Supabase / Postgres)
---
--- Built from what the app code reads and writes. Use it to:
---   1) read and learn the database in one place, or
---   2) create a fresh Supabase project.
---
--- If you run it on your EXISTING database, run it in a new/empty project
--- instead, or read it only. Your seed.sql must use the same column names.
--- To get the exact schema of your running database, see the bottom of
--- this file (section 10).
--- =====================================================================
 
 
 -- 0. EXTENSIONS ------------------------------------------------------
@@ -268,24 +258,3 @@ grant  execute on function public.match_kb_chunks(extensions.vector, double prec
 
 grant execute on function public.is_staff() to authenticated;
 grant execute on function public.is_admin() to authenticated;
-
-
--- 10. HOW TO MAKE THE FIRST STAFF USER -------------------------------
--- 1) Supabase dashboard -> Authentication -> Users -> Add user (email + password)
--- 2) Copy that user's id, then run:
---
--- insert into public.profiles (id, full_name, role)
--- values ('<paste-user-id-here>', 'Demo Staff', 'ADMIN');
---
--- 3) Turn off public sign-ups in Authentication settings.
-
-
--- 11. TO SEE THE REAL SCHEMA OF YOUR RUNNING DATABASE ----------------
--- Run this in the SQL Editor and compare with this file:
---
--- select table_name, column_name, data_type, column_default
--- from information_schema.columns
--- where table_schema = 'public'
--- order by table_name, ordinal_position;
---
--- Or with the Supabase CLI:  supabase db dump --schema public -f schema_real.sql
