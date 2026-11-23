@@ -435,5 +435,5 @@ I used AI assistants to explain ideas, review code, fix errors and help write th
 
 Built by **Asim Momin** as a portfolio project.
 
-[Portfolio](https://vercel.com/asim-momin/my-portfolio-site) ·
+[Portfolio](https://asim-momin-7864-portfolio.vercel.app/) ·
 [GitHub](https://github.com/asim-momin-7864) · [LinkedIn](http://www.linkedin.com/in/asim-momin7864) · Email: asimmomin.dev@gmail.com
