@@ -1,11 +1,5 @@
 # TicketPilot AI
 
-<!-- HOW TO EDIT THE LINKS ABOVE
-1. Live demo: after you deploy, replace TODO-add-live-demo-link with your Vercel address.
-2. Demo video: replace TODO-add-demo-video-link with your LinkedIn post or YouTube link.
-Until you have a link, delete that word and the "|" next to it.
-Also change the Status line below after you deploy. -->
-
 An AI-assisted customer support desk for a made-up software company called **Orbitly**.
 
 A customer raises a ticket. An AI agent reads it, finds help articles, and writes a draft reply. **A person checks the draft before anything is sent.** Risky requests, like refunds, are never answered by the AI. They go straight to a person.
@@ -14,11 +8,9 @@ A customer raises a ticket. An AI agent reads it, finds help articles, and write
 
 > This is a learning and portfolio project. All data is dummy data.
 
-## [**Live demo**](TODO-add-live-demo-link) | [**Demo video**](TODO-add-demo-video-link) | [Source code](https://github.com/asim-momin-7864/ticket-pilot-ai-app)
+## [**Live demo**](https://ticket-pilot-ai-app.vercel.app/) | [Source code](https://github.com/asim-momin-7864/ticket-pilot-ai-app)
 
 ## Screenshots
-
-<!-- Save each picture in docs/screenshots with the file name shown below. Use the same theme (light or dark) for all of them. Do not show private data or keys. If you skip a screenshot, delete its title and its image line. -->
 
 **Home page**
 
@@ -443,6 +435,5 @@ I used AI assistants to explain ideas, review code, fix errors and help write th
 
 Built by **Asim Momin** as a portfolio project.
 
-[GitHub](https://github.com/asim-momin-7864) · [LinkedIn](http://www.linkedin.com/in/asim-momin7864) · Email: TODO
-
-<!-- Add your email and, if you have one, your portfolio link. -->
+[Portfolio](https://vercel.com/asim-momin/my-portfolio-site) ·
+[GitHub](https://github.com/asim-momin-7864) · [LinkedIn](http://www.linkedin.com/in/asim-momin7864) · Email: asimmomin.dev@gmail.com
